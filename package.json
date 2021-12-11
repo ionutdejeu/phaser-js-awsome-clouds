@@ -19,6 +19,7 @@
     },
     "homepage": "https://github.com/photonstorm/phaser3-typescript-project-template#readme",
     "dependencies": {
+        "bitecs": "^0.3.33",
         "rxjs": "^7.4.0"
     },
     "devDependencies": {
