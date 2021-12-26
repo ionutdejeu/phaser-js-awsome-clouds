@@ -1,5 +1,21 @@
+
+---
+name: swirl
+type: fragment
+author: ionut.dejeu
+---
+
+precision mediump float;
+
 const float PI = 3.1415926535897932384626433832795;
 const float TAU = 2.0 * PI;
+
+uniform float time;
+uniform vec2 resolution;
+uniform sampler2D iChannel0;
+
+varying vec2 fragCoord;
+
 
 mat2 rotate2D(float a)
 {
@@ -47,17 +63,23 @@ float smoke(vec2 pos)
     return smokeBase(pos);
 }
 
-void mainImage( out vec4 fragColor, in vec2 fragCoord )
+void mainImage(out vec4 fragColor, in vec2 fragCoord )
 {
-	vec2 uv = 2.0 * (fragCoord.xy - iResolution.xy * 0.5) / iResolution.y;
+	vec2 uv = 2.0 * (fragCoord.xy - resolution.xy * 0.5) / resolution.y;
     
     float gamma = 2.2;
     
-    vec3 bg = pow(texture(iChannel0, uv * vec2(0.5, 0.7)).xyz, vec3(gamma)) * vec3(0.5, 0.5, 0.6);
+    vec3 bg = vec3(0.5, 0.4, 0.4);
     float smokeWhite = smoke(uv);
     float smokeShadow = smoke(uv + vec2(-0.15, 0.1));
     
     vec3 color = mix(bg * mix(1.0, 0.3, smokeShadow), vec3(1.0), smokeWhite);
     
-    fragColor = vec4(pow(color, vec3(1.0 / gamma)), 1.0);
+    gl_FragColor = vec4(pow(color, vec3(1.0 / gamma)), 1.0);
+}
+
+void main(void)
+{
+    mainImage(gl_FragColor, fragCoord.xy);
+    gl_FragColor.a = 1.0;
 }

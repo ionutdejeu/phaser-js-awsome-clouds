@@ -10,7 +10,6 @@ import {
 	IWorld,
 	System
   } from 'bitecs'
-import { IWorldDefinition } from 'matter'
 
 const Vector3 = { x: Types.f32, y: Types.f32, z: Types.f32 }
 const Position = defineComponent(Vector3)
@@ -61,9 +60,16 @@ export default class MainMenuScene extends Phaser.Scene {
 	}
 
 	create(): void {
-		this.backgroundGradient = this.add.graphics();
-		this.backgroundGradient.fillGradientStyle(0xff0000, 0x00ff00, 0x0000ff, 0xffff00, 1);
-		this.backgroundGradient.fillRect(0,0,this.scale.width,this.scale.height)
+
+		//this.add.shader('swirl', 0, 0, 800, 600).setOrigin(0);
+
+        //this.add.shader('Plasma', 0, 412, 800, 172).setOrigin(0);
+
+
+		//let s = this.add.shader("swirl",0,0,this.scale.width,this.scale.height)
+		this.add.shader('swirl',0,0 ,this.scale.width,this.scale.height).setOrigin(0);
+
+		
 	}
 
 	update(){

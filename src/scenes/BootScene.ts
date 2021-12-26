@@ -7,12 +7,15 @@ export default class BootScene extends Phaser.Scene {
 		this.loadImages();
 		this.loadSpriteSheets();
 		this.loadAudio();
+		this.load.glsl('swirl', 'assets/swirl.glsl.js');
+		this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
+        this.load.glsl('stars', 'assets/starfields.glsl.js');
+
+
 	}
 
 	create(): void {
 		this.scene.start("MainMenuScene");
-
-        
 	}
 
 	// Utility functions:
