@@ -10,8 +10,6 @@ export default class BootScene extends Phaser.Scene {
 		this.load.glsl('swirl', 'assets/swirl.glsl.js');
 		this.load.glsl('bundle', 'assets/plasma-bundle.glsl.js');
         this.load.glsl('stars', 'assets/starfields.glsl.js');
-
-
 	}
 
 	create(): void {
